@@ -465,7 +465,7 @@ class PosOrder(models.Model):
                 price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
                 for tax in taxes.compute_all(price, cur, line.qty)['taxes']:
                     data = self._prepare_account_move_line_with_tax(
-                        line, tax, order, date_order, partner_id, cur, cur_company, rounding_method
+                        line, tax, order, date_order, partner_id, income_account, cur, cur_company, rounding_method
                     )
                     if cur != cur_company:
                         amount_cur_company += data['credit'] - data['debit']
